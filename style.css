@@ -67,3 +67,16 @@ h2 {
   background: #cc0000;
   font-size: 14px;
 }
+
+#practice-card {
+  padding: 20px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+}
+
+#practice-card p {
+  min-height: 24px;
+  font-size: 20px;
+}
