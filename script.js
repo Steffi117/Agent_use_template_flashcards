@@ -5,6 +5,7 @@ const wordPairList = document.querySelector("#word-pair-list");
 const englishPracticeWord = document.querySelector("#english-practice-word");
 const germanPracticeWord = document.querySelector("#german-practice-word");
 const revealButton = document.querySelector("#reveal-button");
+const nextButton = document.querySelector("#next-button");
 let wordPairs = [];
 let currentCardIndex = 0;
 
@@ -29,6 +30,7 @@ function showPracticeCard() {
   if (wordPairs.length === 0) {
     englishPracticeWord.textContent = "Keine Vokabeln vorhanden";
     revealButton.disabled = true;
+    nextButton.disabled = true;
     return;
   }
 
@@ -38,6 +40,7 @@ function showPracticeCard() {
 
   englishPracticeWord.textContent = wordPairs[currentCardIndex].english;
   revealButton.disabled = false;
+  nextButton.disabled = wordPairs.length < 2;
 }
 
 // Reveal the German word of the current practice card.
@@ -45,6 +48,22 @@ function revealGermanWord() {
   if (wordPairs.length > 0) {
     germanPracticeWord.textContent = wordPairs[currentCardIndex].german;
   }
+}
+
+// Show a random word pair that is different from the current one.
+function showNextCard() {
+  if (wordPairs.length < 2) {
+    return;
+  }
+
+  let nextIndex = currentCardIndex;
+
+  while (nextIndex === currentCardIndex) {
+    nextIndex = Math.floor(Math.random() * wordPairs.length);
+  }
+
+  currentCardIndex = nextIndex;
+  showPracticeCard();
 }
 
 // Display all entered word pairs in the list.
@@ -105,3 +124,4 @@ showWordPairs();
 showPracticeCard();
 wordPairForm.addEventListener("submit", addWordPair);
 revealButton.addEventListener("click", revealGermanWord);
+nextButton.addEventListener("click", showNextCard);
