@@ -55,4 +55,15 @@ h2 {
   background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+#word-pair-list button {
+  margin-top: 0;
+  padding: 6px 10px;
+  background: #cc0000;
+  font-size: 14px;
 }
