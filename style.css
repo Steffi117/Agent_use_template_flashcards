@@ -38,3 +38,21 @@ button {
   border-radius: 4px;
   cursor: pointer;
 }
+
+h2 {
+  margin-top: 24px;
+  font-size: 20px;
+}
+
+#word-pair-list {
+  padding: 0;
+  list-style: none;
+}
+
+#word-pair-list li {
+  padding: 10px;
+  margin-bottom: 8px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
