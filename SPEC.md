@@ -6,10 +6,13 @@ Just me, on a laptop browser
 ## Features (numbered, so prompts can refer to them)
 F1: Add a textfield, where you can put a name inside
 F2: After click on the button "Hinzufügen" there should be a next field, with "Trinkprotokoll" and select "Ja" or "Nein". 
+F3: If "Ja", there should be a field with "ml" where you can write inside. If "Nein" there should be an red X.
+
 
 ## Acceptance criteria (how I know a feature works)
 - F1: Empty fields cannot be summitted. After adding the form is cleared.
 - F2: Name cannot be changed after "Hinzufügen"
+- F3: Name and "Trinkprotokoll" should not be erased
 
 ## Out of scope (do NOT build)
 - ⁠No login, no server, no database
@@ -18,6 +21,3 @@ F2: After click on the button "Hinzufügen" there should be a next field, with "
 - ⁠No mobile app
 ## Look & feel
 Simple, readable, one column, max width ~600px, one accent colour.
-
-
-12345

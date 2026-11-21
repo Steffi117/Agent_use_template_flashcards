@@ -2,6 +2,28 @@ const nameForm = document.querySelector("#name-form");
 const nameInput = document.querySelector("#patient-name");
 const patientList = document.querySelector("#patient-list");
 
+// Show an ml field for Ja or a red X for Nein.
+function updateDrinkResult(drinkSelect, resultArea) {
+    resultArea.textContent = "";
+
+    if (drinkSelect.value === "ja") {
+        const mlLabel = document.createElement("label");
+        mlLabel.textContent = "ml";
+
+        const mlInput = document.createElement("input");
+        mlInput.type = "number";
+        mlInput.min = "0";
+        mlLabel.appendChild(mlInput);
+        resultArea.appendChild(mlLabel);
+    } else {
+        const redX = document.createElement("span");
+        redX.className = "red-x";
+        redX.textContent = "X";
+        redX.setAttribute("aria-label", "Nicht getrunken");
+        resultArea.appendChild(redX);
+    }
+}
+
 // Create a new patient entry with a fixed name and drinking protocol selection.
 function addPatientEntry(patientName) {
     const patientEntry = document.createElement("div");
@@ -25,8 +47,16 @@ function addPatientEntry(patientName) {
     drinkSelect.appendChild(noOption);
     drinkLabel.appendChild(drinkSelect);
 
+    const resultArea = document.createElement("div");
+    resultArea.className = "drink-result";
+    updateDrinkResult(drinkSelect, resultArea);
+    drinkSelect.addEventListener("change", function () {
+        updateDrinkResult(drinkSelect, resultArea);
+    });
+
     patientEntry.appendChild(nameText);
     patientEntry.appendChild(drinkLabel);
+    patientEntry.appendChild(resultArea);
     patientList.appendChild(patientEntry);
 }
 
