@@ -5,3 +5,17 @@ body {
   margin: 0;
   background-color: white;
 }
+
+#name-form {
+  display: flex;
+  max-width: 600px;
+  margin: 20px auto;
+  gap: 10px;
+  align-items: center;
+}
+
+#name-input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px;
+}
