@@ -26,13 +26,14 @@ function addPatient(event) {
 function addPatientRow(name, units) {
   const patientList = document.getElementById("patient-list");
   const newRow = document.createElement("tr");
-  const nameCell = document.createElement("td");
-  const unitsCell = document.createElement("td");
+  const columnNames = [name, units, "", "", "", "", "", ""];
 
-  nameCell.textContent = name;
-  unitsCell.textContent = units;
-  newRow.appendChild(nameCell);
-  newRow.appendChild(unitsCell);
+  for (let index = 0; index < columnNames.length; index++) {
+    const newCell = document.createElement("td");
+    newCell.textContent = columnNames[index];
+    newRow.appendChild(newCell);
+  }
+
   patientList.appendChild(newRow);
 }
 

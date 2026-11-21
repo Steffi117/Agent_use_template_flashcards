@@ -27,8 +27,8 @@ body {
 }
 
 #patient-table {
-  width: 100%;
-  max-width: 600px;
+  width: 600px;
+  max-width: none;
   margin: 20px auto;
   border-collapse: collapse;
 }
