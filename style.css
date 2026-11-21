@@ -66,6 +66,21 @@ td input {
     width: 100%;
 }
 
+.ml-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ml-row input {
+    flex: 1;
+    width: auto;
+}
+
+.ml-result {
+    display: inline-block;
+}
+
 .red-x {
     display: inline-block;
     color: #cc0000;

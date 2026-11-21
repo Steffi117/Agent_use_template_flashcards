@@ -7,19 +7,31 @@ function updateDrinkResult(drinkCell, drinkChoice) {
     drinkCell.textContent = "";
 
     if (drinkChoice === "ja") {
-        const mlLabel = document.createElement("label");
-        mlLabel.textContent = "ml";
+        const mlRow = document.createElement("div");
+        mlRow.className = "ml-row";
 
         const mlInput = document.createElement("input");
         mlInput.type = "number";
         mlInput.min = "0";
-        mlLabel.appendChild(mlInput);
+
+        const mlUnit = document.createElement("span");
+        mlUnit.textContent = "ml";
+
+        mlRow.appendChild(mlInput);
+        mlRow.appendChild(mlUnit);
+
+        // Show the finished amount as fixed text instead of a visible input.
         mlInput.addEventListener("change", function () {
             if (mlInput.value !== "") {
-                mlInput.readOnly = true;
+                drinkCell.textContent = "";
+
+                const mlResult = document.createElement("span");
+                mlResult.className = "ml-result";
+                mlResult.textContent = mlInput.value + " ml";
+                drinkCell.appendChild(mlResult);
             }
         });
-        drinkCell.appendChild(mlLabel);
+        drinkCell.appendChild(mlRow);
     } else {
         const redX = document.createElement("span");
         redX.className = "red-x";
