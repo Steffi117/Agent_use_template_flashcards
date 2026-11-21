@@ -1,9 +1,35 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    color: #222;
 }
 
 main {
     max-width: 600px;
     margin: 0 auto;
+    padding: 24px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+button {
+    align-self: flex-start;
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 4px;
+    background-color: #0066cc;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
 }

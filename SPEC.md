@@ -4,10 +4,12 @@ Eine Einsseitige webseite, wo Patienten angemeldet werden können und die wichti
 ## Users
 Just me, on a laptop browser
 ## Features (numbered, so prompts can refer to them)
-F1: Add a field, where you can put a name inside
+F1: Add a textfield, where you can put a name inside
+
 
 ## Acceptance criteria (how I know a feature works)
 - F1: Empty fields cannot be summitted. After adding the form is cleared.
+
 
 ## Out of scope (do NOT build)
 - ⁠No login, no server, no database
