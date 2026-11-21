@@ -107,6 +107,7 @@ function addMeasureToPatient(name, measure) {
         measureCell.textContent = measureCell.textContent + " ✓";
         measureCell.textContent = measureCell.textContent.trim();
         saveMeasure(name, measure);
+        removeCompletedPatient(name);
       }
 
       return true;
@@ -149,6 +150,51 @@ function saveMeasure(name, measure) {
   }
 
   localStorage.setItem("patients", JSON.stringify(patients));
+}
+
+// Entfernt einen Patienten, wenn alle Einheiten durch Häkchen erreicht sind.
+function removeCompletedPatient(name) {
+  const patientRows = document.querySelectorAll("#patient-list tr");
+
+  for (let index = 0; index < patientRows.length; index++) {
+    const nameCell = patientRows[index].querySelector("td");
+
+    if (nameCell.textContent === name) {
+      const prescribedUnits = Number(patientRows[index].children[1].textContent);
+      let checkCount = 0;
+
+      for (let columnIndex = 2; columnIndex < patientRows[index].children.length; columnIndex++) {
+        const measureText = patientRows[index].children[columnIndex].textContent;
+        const checkParts = measureText.split("✓");
+        checkCount = checkCount + (checkParts.length - 1);
+      }
+
+      if (checkCount === prescribedUnits) {
+        patientRows[index].remove();
+        removePatientFromStorage(name);
+      }
+    }
+  }
+}
+
+// Löscht einen abgeschlossenen Patienten aus dem Browser-Speicher.
+function removePatientFromStorage(name) {
+  const savedPatients = localStorage.getItem("patients");
+
+  if (savedPatients === null) {
+    return;
+  }
+
+  const patients = JSON.parse(savedPatients);
+  const remainingPatients = [];
+
+  for (let index = 0; index < patients.length; index++) {
+    if (patients[index].name !== name) {
+      remainingPatients.push(patients[index]);
+    }
+  }
+
+  localStorage.setItem("patients", JSON.stringify(remainingPatients));
 }
 
 // Lädt alle gespeicherten Patienten beim Öffnen der Seite.

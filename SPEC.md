@@ -13,6 +13,7 @@ F4: Create more colum with the name "Knete", "Papier", "Jenga", "Knöpfe", "Stif
 F5: Save in localStorage so they survive a page reload.
 F6: Add a field with "durchgeführte Maßnahme", where you can choose the names of colum 3 to 8
 F7: When "Name" and "durchgeführte Maßnahme" the same set a check on the write field in the table
+F8: When the number of "Verordnete Einheitenanzahl" and the sum of checks in a line are the same, delete the line
 
 ## Acceptance criteria (how I know a feature works)
 - F1: Empty fields cannot be summitted. After adding the form is cleared.
