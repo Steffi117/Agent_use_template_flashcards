@@ -61,6 +61,10 @@ td select {
     font-size: 16px;
 }
 
+td input[type="time"] {
+    padding: 10px;
+}
+
 td input {
     box-sizing: border-box;
     width: 100%;

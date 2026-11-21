@@ -13,11 +13,14 @@
 - F4 überarbeitet: Bei "Ja" wird nur ein ml-Eingabefeld in der Trinkprotokoll-Spalte angezeigt.
 - F4 überarbeitet: Nach Eingabe des ml-Wertes wird das Eingabefeld schreibgeschützt.
 - F4 überarbeitet: Bei "Nein" wird in der Trinkprotokoll-Spalte ein festes rotes "X" angezeigt.
+- F6: Die Tabelle enthält zwischen "Name" und "Trinkprotokoll" eine Uhrzeit-Spalte mit einem Eingabefeld.
+- F1-F6 überarbeitet: Patienten, Uhrzeiten und Trinkprotokollwerte werden im Browser gespeichert.
+- F5 überarbeitet: Nach der ml-Eingabe wird der Wert als feste Textangabe gespeichert und angezeigt.
+- Ungültiger oder leerer lokaler Speicher wird beim Laden als leere Liste behandelt.
 
 ## Next
 - F4 genauer festlegen: z. B. sollen weitere Daten oder eine feste Reihenfolge von Spalten ergänzt werden?
 - Entscheidung treffen, ob zusätzliche Patientendaten in der Tabelle angezeigt werden sollen.
-- Browser-Speicherung implementieren, sodass Patienten und Trinkprotokolle nach dem Neuladen erhalten bleiben.
 
 ## Decisions & notes
 - Erste Tabelle: "Name", "Trinkprotokoll", "Ergebnis".
