@@ -98,3 +98,15 @@ td input {
     font-size: 24px;
     font-weight: bold;
 }
+
+.transport-choices {
+    display: flex;
+    gap: 12px;
+}
+
+.transport-choices label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+}

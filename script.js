@@ -103,6 +103,59 @@ function createDoctorTalkSelect(patient, doctorCell) {
     doctorCell.appendChild(doctorSelect);
 }
 
+// Show the fixed transport result and prevent it from being changed.
+function updateTransportResult(transportCell, transportChoice, patient) {
+    transportCell.textContent = "";
+    patient.transport = transportChoice;
+    savePatients();
+
+    if (transportChoice === "ja") {
+        const greenCheck = document.createElement("span");
+        greenCheck.className = "green-check";
+        greenCheck.textContent = "\u2713";
+        greenCheck.setAttribute("aria-label", "Transport ja");
+        transportCell.appendChild(greenCheck);
+    } else if (transportChoice === "nein") {
+        const redX = document.createElement("span");
+        redX.className = "red-x";
+        redX.textContent = "X";
+        redX.setAttribute("aria-label", "Transport nein");
+        transportCell.appendChild(redX);
+    }
+}
+
+// Create the yes and no choices for the transport column.
+function createTransportChoices(patient, transportCell) {
+    const choices = document.createElement("div");
+    choices.className = "transport-choices";
+
+    const yesLabel = document.createElement("label");
+    const yesOption = document.createElement("input");
+    yesOption.type = "radio";
+    yesOption.value = "ja";
+    yesLabel.appendChild(yesOption);
+    yesLabel.appendChild(document.createTextNode("Ja"));
+
+    const noLabel = document.createElement("label");
+    const noOption = document.createElement("input");
+    noOption.type = "radio";
+    noOption.value = "nein";
+    noLabel.appendChild(noOption);
+    noLabel.appendChild(document.createTextNode("Nein"));
+
+    yesOption.addEventListener("change", function () {
+        updateTransportResult(transportCell, "ja", patient);
+    });
+    noOption.addEventListener("change", function () {
+        updateTransportResult(transportCell, "nein", patient);
+    });
+
+    choices.appendChild(yesLabel);
+    choices.appendChild(noLabel);
+    transportCell.textContent = "";
+    transportCell.appendChild(choices);
+}
+
 // Create a new patient row with a fixed name and drinking protocol.
 function addPatientEntry(patient) {
     const patientRow = document.createElement("tr");
@@ -166,6 +219,14 @@ function addPatientEntry(patient) {
         }
     });
 
+    const transportCell = document.createElement("td");
+    patientRow.appendChild(transportCell);
+    if (patient.transport === "ja" || patient.transport === "nein") {
+        updateTransportResult(transportCell, patient.transport, patient);
+    } else {
+        createTransportChoices(patient, transportCell);
+    }
+
     patientTableBody.appendChild(patientRow);
 
     if (patient.drinkChoice === "ja" && patient.drinkAmount !== "") {
@@ -224,7 +285,8 @@ function handleNameSubmit(event) {
         time: "",
         drinkChoice: "",
         drinkAmount: "",
-        doctorTalk: ""
+        doctorTalk: "",
+        transport: ""
     };
     patients.push(patient);
     savePatients();
