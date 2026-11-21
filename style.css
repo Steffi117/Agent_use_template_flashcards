@@ -26,6 +26,19 @@ body {
   padding: 8px;
 }
 
+#measure-area {
+  display: flex;
+  max-width: 600px;
+  margin: 10px auto 20px;
+  gap: 10px;
+  align-items: center;
+}
+
+#measure-select {
+  flex: 1;
+  padding: 8px;
+}
+
 #patient-table {
   width: 600px;
   max-width: none;
