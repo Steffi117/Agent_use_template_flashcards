@@ -10,6 +10,7 @@ F1: Add a textfield, where you can put a name inside
 F2: Add a second textfield with "verordnete Einheitenanzahl". Next to the Textfield make a Button "Hinzufügen". 
 F3: Create a Table, where fields showed as colum and every name is a new line. 
 F4: Create more colum with the name "Knete", "Papier", "Jenga", "Knöpfe", "Stift" and "Fingerübungen"
+F5: Save in localStorage so they survive a page reload.
 
 ## Acceptance criteria (how I know a feature works)
 - F1: Empty fields cannot be summitted. After adding the form is cleared.

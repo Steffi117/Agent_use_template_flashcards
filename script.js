@@ -18,6 +18,7 @@ function addPatient(event) {
   }
 
   addPatientRow(name, units);
+  savePatient(name, units);
   nameForm.reset();
   nameInput.focus();
 }
@@ -37,6 +38,39 @@ function addPatientRow(name, units) {
   patientList.appendChild(newRow);
 }
 
+// Speichert einen neuen Patienten im Browser.
+function savePatient(name, units) {
+  const savedPatients = localStorage.getItem("patients");
+  let patients = [];
+
+  if (savedPatients !== null) {
+    patients = JSON.parse(savedPatients);
+  }
+
+  patients.push({
+    name: name,
+    units: units
+  });
+
+  localStorage.setItem("patients", JSON.stringify(patients));
+}
+
+// Lädt alle gespeicherten Patienten beim Öffnen der Seite.
+function loadPatients() {
+  const savedPatients = localStorage.getItem("patients");
+
+  if (savedPatients === null) {
+    return;
+  }
+
+  const patients = JSON.parse(savedPatients);
+
+  for (let index = 0; index < patients.length; index++) {
+    addPatientRow(patients[index].name, patients[index].units);
+  }
+}
+
 // Verbindet das Formular mit der Funktion zum Hinzufügen.
 const nameForm = document.getElementById("name-form");
 nameForm.addEventListener("submit", addPatient);
+loadPatients();
