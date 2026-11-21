@@ -48,6 +48,61 @@ function updateDrinkResult(drinkCell, drinkChoice, patient) {
     }
 }
 
+// Show the fixed doctor conversation status, which can be changed by clicking.
+function updateDoctorTalkResult(doctorCell, doctorChoice, patient) {
+    doctorCell.textContent = "";
+    patient.doctorTalk = doctorChoice;
+    savePatients();
+
+    if (doctorChoice === "durchgefuehrt") {
+        const greenCheck = document.createElement("span");
+        greenCheck.className = "green-check";
+        greenCheck.textContent = "\u2713";
+        greenCheck.setAttribute("aria-label", "Durchgeführt");
+        doctorCell.appendChild(greenCheck);
+    } else if (doctorChoice === "nicht-durchgefuehrt") {
+        const redX = document.createElement("span");
+        redX.className = "red-x";
+        redX.textContent = "X";
+        redX.setAttribute("aria-label", "Noch nicht durchgeführt");
+        doctorCell.appendChild(redX);
+    }
+
+}
+
+// Create the three written choices for the doctor conversation column.
+function createDoctorTalkSelect(patient, doctorCell) {
+    const doctorSelect = document.createElement("select");
+
+    const doneOption = document.createElement("option");
+    doneOption.value = "durchgefuehrt";
+    doneOption.textContent = "Durchgeführt";
+
+    const notDoneOption = document.createElement("option");
+    notDoneOption.value = "nicht-durchgefuehrt";
+    notDoneOption.textContent = "Noch nicht durchgeführt";
+
+    const notNecessaryOption = document.createElement("option");
+    notNecessaryOption.value = "nicht-notwendig";
+    notNecessaryOption.textContent = "Nicht notwendig";
+
+    doctorSelect.appendChild(doneOption);
+    doctorSelect.appendChild(notDoneOption);
+    doctorSelect.appendChild(notNecessaryOption);
+    doctorSelect.value = patient.doctorTalk === "" ? "nicht-notwendig" : patient.doctorTalk;
+
+    doctorSelect.addEventListener("change", function () {
+        if (doctorSelect.value === "nicht-notwendig") {
+            updateDoctorTalkResult(doctorCell, "", patient);
+        } else {
+            updateDoctorTalkResult(doctorCell, doctorSelect.value, patient);
+        }
+    });
+
+    doctorCell.textContent = "";
+    doctorCell.appendChild(doctorSelect);
+}
+
 // Create a new patient row with a fixed name and drinking protocol.
 function addPatientEntry(patient) {
     const patientRow = document.createElement("tr");
@@ -99,6 +154,18 @@ function addPatientEntry(patient) {
     patientRow.appendChild(nameCell);
     patientRow.appendChild(timeCell);
     patientRow.appendChild(drinkCell);
+
+    const doctorCell = document.createElement("td");
+    patientRow.appendChild(doctorCell);
+
+    updateDoctorTalkResult(doctorCell, patient.doctorTalk, patient);
+
+    doctorCell.addEventListener("click", function () {
+        if (doctorCell.querySelector("select") === null) {
+            createDoctorTalkSelect(patient, doctorCell);
+        }
+    });
+
     patientTableBody.appendChild(patientRow);
 
     if (patient.drinkChoice === "ja" && patient.drinkAmount !== "") {
@@ -156,7 +223,8 @@ function handleNameSubmit(event) {
         name: patientName,
         time: "",
         drinkChoice: "",
-        drinkAmount: ""
+        drinkAmount: "",
+        doctorTalk: ""
     };
     patients.push(patient);
     savePatients();

@@ -91,3 +91,10 @@ td input {
     font-size: 24px;
     font-weight: bold;
 }
+
+.green-check {
+    display: inline-block;
+    color: #008000;
+    font-size: 24px;
+    font-weight: bold;
+}

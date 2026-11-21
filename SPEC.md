@@ -10,13 +10,14 @@ F3: If "Ja", there should be a field with "ml" where you can write inside. If "N
 F4: Now Create a Table, where fields showed as colum and every name is a new line. 
 F5: If the "ml" input is done write it in the table without a visible field and write the "ml" on the right side to the input. 
 F6: Now create a field "Uhrzeit" between "Name" an "Trinkprotokoll", where you can write a Time inside.
+F7: The next column "Arztgespräch", should have three options to select. Options: A green check, for "durchgeführt", a red X for "noch nicht durchgeführt" and a empty field for "nicht notwendig". Don't do "Auswahl"
 
 ## Acceptance criteria (how I know a feature works)
 - F1: Empty fields cannot be summitted. After adding the form is cleared.
 - F2: Name cannot be changed after "Hinzufügen"
 - F3: Name and "Trinkprotokoll" should not be erased
 - F4: The input from F3 should be implemented as Information and can´t be changed., after a pressed enter. Don't write "Ja", write only the "ml" input in the column "Trinkprotokoll". The 
-
+- F7: In the finished table should be just shown the check, the X an the empty field. To select should be shown the written things. It should be can changed anytime
 
 ## Out of scope (do NOT build)
 - ⁠No login, no server, no database
