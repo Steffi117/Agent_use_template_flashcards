@@ -2,11 +2,11 @@ const nameForm = document.querySelector("#name-form");
 const nameInput = document.querySelector("#patient-name");
 const patientTableBody = document.querySelector("#patient-table-body");
 
-// Show an ml field for Ja or a red X for Nein.
-function updateDrinkResult(drinkSelect, resultArea) {
-    resultArea.textContent = "";
+// Show the fixed drinking result after the selection.
+function updateDrinkResult(drinkCell, drinkChoice) {
+    drinkCell.textContent = "";
 
-    if (drinkSelect.value === "ja") {
+    if (drinkChoice === "ja") {
         const mlLabel = document.createElement("label");
         mlLabel.textContent = "ml";
 
@@ -14,17 +14,22 @@ function updateDrinkResult(drinkSelect, resultArea) {
         mlInput.type = "number";
         mlInput.min = "0";
         mlLabel.appendChild(mlInput);
-        resultArea.appendChild(mlLabel);
+        mlInput.addEventListener("change", function () {
+            if (mlInput.value !== "") {
+                mlInput.readOnly = true;
+            }
+        });
+        drinkCell.appendChild(mlLabel);
     } else {
         const redX = document.createElement("span");
         redX.className = "red-x";
         redX.textContent = "X";
         redX.setAttribute("aria-label", "Nicht getrunken");
-        resultArea.appendChild(redX);
+        drinkCell.appendChild(redX);
     }
 }
 
-// Create a new patient entry with a fixed name and drinking protocol selection.
+// Create a new patient row with a fixed name and drinking protocol.
 function addPatientEntry(patientName) {
     const patientRow = document.createElement("tr");
 
@@ -35,6 +40,9 @@ function addPatientEntry(patientName) {
     drinkLabel.textContent = "Trinkprotokoll";
 
     const drinkSelect = document.createElement("select");
+    const emptyOption = document.createElement("option");
+    emptyOption.value = "";
+    emptyOption.textContent = "Auswahl";
     const yesOption = document.createElement("option");
     yesOption.value = "ja";
     yesOption.textContent = "Ja";
@@ -42,6 +50,7 @@ function addPatientEntry(patientName) {
     noOption.value = "nein";
     noOption.textContent = "Nein";
 
+    drinkSelect.appendChild(emptyOption);
     drinkSelect.appendChild(yesOption);
     drinkSelect.appendChild(noOption);
     drinkLabel.appendChild(drinkSelect);
@@ -49,19 +58,12 @@ function addPatientEntry(patientName) {
     const drinkCell = document.createElement("td");
     drinkCell.appendChild(drinkLabel);
 
-    const resultArea = document.createElement("div");
-    resultArea.className = "drink-result";
-    updateDrinkResult(drinkSelect, resultArea);
     drinkSelect.addEventListener("change", function () {
-        updateDrinkResult(drinkSelect, resultArea);
+        updateDrinkResult(drinkCell, drinkSelect.value);
     });
-
-    const resultCell = document.createElement("td");
-    resultCell.appendChild(resultArea);
 
     patientRow.appendChild(nameCell);
     patientRow.appendChild(drinkCell);
-    patientRow.appendChild(resultCell);
     patientTableBody.appendChild(patientRow);
 }
 
