@@ -12,10 +12,12 @@ F3: Create a Table, where fields showed as colum and every name is a new line.
 F4: Create more colum with the name "Knete", "Papier", "Jenga", "Knöpfe", "Stift" and "Fingerübungen"
 F5: Save in localStorage so they survive a page reload.
 F6: Add a field with "durchgeführte Maßnahme", where you can choose the names of colum 3 to 8
+F7: When "Name" and "durchgeführte Maßnahme" the same set a check on the write field in the table
 
 ## Acceptance criteria (how I know a feature works)
 - F1: Empty fields cannot be summitted. After adding the form is cleared.
 - F2: Name and "verordnete Einheitenanzahl" cannot be changed after "Hinzufügen"
+- F7: in a fild could be multiple checks, when you klick on the "hinzufügen" button it is not necessesary to fill something in "Verordnete Einheitenanzahl"
 
 ## Out of scope (do NOT build)
 - ⁠No login, no server, no database
