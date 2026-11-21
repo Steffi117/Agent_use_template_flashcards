@@ -195,9 +195,33 @@ function createFollowUpField(patient, followUpCell) {
     followUpCell.appendChild(followUpInput);
 }
 
+// Remove a patient and rebuild the table after a delete button is pressed.
+function deletePatient(patient) {
+    const patientIndex = patients.indexOf(patient);
+
+    if (patientIndex !== -1) {
+        patients.splice(patientIndex, 1);
+        savePatients();
+        patientTableBody.textContent = "";
+        showSavedPatients();
+    }
+}
+
 // Create a new patient row with a fixed name and drinking protocol.
 function addPatientEntry(patient) {
     const patientRow = document.createElement("tr");
+
+    const deleteCell = document.createElement("td");
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.className = "delete-patient";
+    deleteButton.textContent = "\u2212";
+    deleteButton.setAttribute("aria-label", patient.name + " löschen");
+    deleteButton.setAttribute("title", "Patient löschen");
+    deleteButton.addEventListener("click", function () {
+        deletePatient(patient);
+    });
+    deleteCell.appendChild(deleteButton);
 
     const nameCell = document.createElement("td");
     nameCell.textContent = patient.name;
@@ -243,6 +267,7 @@ function addPatientEntry(patient) {
         updateDrinkResult(drinkCell, drinkSelect.value, patient);
     });
 
+    patientRow.appendChild(deleteCell);
     patientRow.appendChild(nameCell);
     patientRow.appendChild(timeCell);
     patientRow.appendChild(drinkCell);

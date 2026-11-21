@@ -13,6 +13,7 @@ F6: Now create a field "Uhrzeit" between "Name" an "Trinkprotokoll", where you c
 F7: The next column "Arztgespräch", should have three options to select. Options: A green check, for "durchgeführt", a red X for "noch nicht durchgeführt" and a empty field for "nicht notwendig". Don't do "Auswahl"
 F8: The next Column "Transport" should just have two options to choose, Yes shown as green check and no as red X
 F9: In the next colum "Folgetermin" should be field, where you can write inside, after clicking "Hinzufügen" there can't be done any changes. It should be empty at the beginning
+F10: For deleting a line sould be a red circle button with a white minus inside
 
 ## Acceptance criteria (how I know a feature works)
 - F1: Empty fields cannot be summitted. After adding the form is cleared.
@@ -22,6 +23,7 @@ F9: In the next colum "Folgetermin" should be field, where you can write inside,
 - F7: In the finished table should be just shown the check, the X an the empty field. To select should be shown the written things. It should be can changed anytime
 - F8:In the finished table should be just shown the check an the X, it can't be changed. To select shoul be shown Yes and No
 - F9: It should not be a field where you can put a date inside, just to bewritten by the user, also don't date just letters
+- F10: The buttons should deleting when pushed by the user. The button should on the left side of the table
 
 ## Out of scope (do NOT build)
 - ⁠No login, no server, no database

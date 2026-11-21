@@ -70,6 +70,20 @@ td input {
     width: 100%;
 }
 
+.delete-patient {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: #cc0000;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 30px;
+    text-align: center;
+}
+
 .ml-row {
     display: flex;
     align-items: center;
