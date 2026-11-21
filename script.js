@@ -1,6 +1,6 @@
 const nameForm = document.querySelector("#name-form");
 const nameInput = document.querySelector("#patient-name");
-const patientList = document.querySelector("#patient-list");
+const patientTableBody = document.querySelector("#patient-table-body");
 
 // Show an ml field for Ja or a red X for Nein.
 function updateDrinkResult(drinkSelect, resultArea) {
@@ -26,11 +26,10 @@ function updateDrinkResult(drinkSelect, resultArea) {
 
 // Create a new patient entry with a fixed name and drinking protocol selection.
 function addPatientEntry(patientName) {
-    const patientEntry = document.createElement("div");
-    patientEntry.className = "patient-entry";
+    const patientRow = document.createElement("tr");
 
-    const nameText = document.createElement("strong");
-    nameText.textContent = patientName;
+    const nameCell = document.createElement("td");
+    nameCell.textContent = patientName;
 
     const drinkLabel = document.createElement("label");
     drinkLabel.textContent = "Trinkprotokoll";
@@ -47,6 +46,9 @@ function addPatientEntry(patientName) {
     drinkSelect.appendChild(noOption);
     drinkLabel.appendChild(drinkSelect);
 
+    const drinkCell = document.createElement("td");
+    drinkCell.appendChild(drinkLabel);
+
     const resultArea = document.createElement("div");
     resultArea.className = "drink-result";
     updateDrinkResult(drinkSelect, resultArea);
@@ -54,10 +56,13 @@ function addPatientEntry(patientName) {
         updateDrinkResult(drinkSelect, resultArea);
     });
 
-    patientEntry.appendChild(nameText);
-    patientEntry.appendChild(drinkLabel);
-    patientEntry.appendChild(resultArea);
-    patientList.appendChild(patientEntry);
+    const resultCell = document.createElement("td");
+    resultCell.appendChild(resultArea);
+
+    patientRow.appendChild(nameCell);
+    patientRow.appendChild(drinkCell);
+    patientRow.appendChild(resultCell);
+    patientTableBody.appendChild(patientRow);
 }
 
 // Handle the form submission and clear the name after a valid entry.
