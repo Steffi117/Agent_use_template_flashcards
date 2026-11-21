@@ -26,6 +26,20 @@ body {
   padding: 8px;
 }
 
+#patient-table {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+#patient-table th,
+#patient-table td {
+  padding: 8px;
+  border: 1px solid #cccccc;
+  text-align: left;
+}
+
 #trinkprotokoll-area {
   display: flex;
   max-width: 600px;
