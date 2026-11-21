@@ -12,6 +12,7 @@ F5: If the "ml" input is done write it in the table without a visible field and 
 F6: Now create a field "Uhrzeit" between "Name" an "Trinkprotokoll", where you can write a Time inside.
 F7: The next column "Arztgespräch", should have three options to select. Options: A green check, for "durchgeführt", a red X for "noch nicht durchgeführt" and a empty field for "nicht notwendig". Don't do "Auswahl"
 F8: The next Column "Transport" should just have two options to choose, Yes shown as green check and no as red X
+F9: In the next colum "Folgetermin" should be field, where you can write inside, after clicking "Hinzufügen" there can't be done any changes. It should be empty at the beginning
 
 ## Acceptance criteria (how I know a feature works)
 - F1: Empty fields cannot be summitted. After adding the form is cleared.
@@ -19,7 +20,8 @@ F8: The next Column "Transport" should just have two options to choose, Yes show
 - F3: Name and "Trinkprotokoll" should not be erased
 - F4: The input from F3 should be implemented as Information and can´t be changed., after a pressed enter. Don't write "Ja", write only the "ml" input in the column "Trinkprotokoll". The 
 - F7: In the finished table should be just shown the check, the X an the empty field. To select should be shown the written things. It should be can changed anytime
-- In the finished table should be just shown the check an the X, it can't be changed. To select shoul be shown Yes and No
+- F8:In the finished table should be just shown the check an the X, it can't be changed. To select shoul be shown Yes and No
+- F9: It should not be a field where you can put a date inside, just to bewritten by the user, also don't date just letters
 
 ## Out of scope (do NOT build)
 - ⁠No login, no server, no database

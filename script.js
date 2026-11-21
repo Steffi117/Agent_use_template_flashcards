@@ -156,6 +156,45 @@ function createTransportChoices(patient, transportCell) {
     transportCell.appendChild(choices);
 }
 
+// Show the fixed follow-up text after it has been entered.
+function updateFollowUpResult(followUpCell, followUp, patient) {
+    followUpCell.textContent = "";
+    patient.followUp = followUp.trim();
+    savePatients();
+
+    if (followUp.trim() !== "") {
+        const followUpResult = document.createElement("span");
+        followUpResult.className = "follow-up-result";
+        followUpResult.textContent = followUp.trim();
+        followUpCell.appendChild(followUpResult);
+    }
+}
+
+// Create the text field for a follow-up without a date picker.
+function createFollowUpField(patient, followUpCell) {
+    const followUpInput = document.createElement("input");
+    followUpInput.type = "text";
+    followUpInput.value = patient.followUp || "";
+
+    followUpInput.addEventListener("change", function () {
+        if (followUpInput.value.trim() !== "") {
+            updateFollowUpResult(followUpCell, followUpInput.value.trim(), patient);
+        }
+    });
+
+    followUpInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            if (followUpInput.value.trim() !== "") {
+                updateFollowUpResult(followUpCell, followUpInput.value.trim(), patient);
+            }
+        }
+    });
+
+    followUpCell.textContent = "";
+    followUpCell.appendChild(followUpInput);
+}
+
 // Create a new patient row with a fixed name and drinking protocol.
 function addPatientEntry(patient) {
     const patientRow = document.createElement("tr");
@@ -227,6 +266,14 @@ function addPatientEntry(patient) {
         createTransportChoices(patient, transportCell);
     }
 
+    const followUpCell = document.createElement("td");
+    patientRow.appendChild(followUpCell);
+    if (patient.followUp !== undefined && patient.followUp !== "") {
+        updateFollowUpResult(followUpCell, patient.followUp, patient);
+    } else {
+        createFollowUpField(patient, followUpCell);
+    }
+
     patientTableBody.appendChild(patientRow);
 
     if (patient.drinkChoice === "ja" && patient.drinkAmount !== "") {
@@ -286,7 +333,8 @@ function handleNameSubmit(event) {
         drinkChoice: "",
         drinkAmount: "",
         doctorTalk: "",
-        transport: ""
+        transport: "",
+        followUp: ""
     };
     patients.push(patient);
     savePatients();
